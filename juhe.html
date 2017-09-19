@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>聚合</title>
+</head>
+<body>
+	
+	<div id="app">
+		<button @click="getmsg">点击发送</button>
+		<h1>{{msg}}</h1>
+	</div>
+
+
+	<script src="../vue/vue.js"></script>
+	<script src="../vue/vue-resource.js"></script>
+	<script>
+		var app=new Vue({
+			el:"#app",
+			data:{
+				msg:""
+			},
+			methods:{
+				getmsg:function(){
+					this.$http({
+						url:"http://v.juhe.cn/toutiao/index?type=top&key=cfe88a732a8af2dd2cfb88645d266792",
+						type:"get",
+						method:"jsonp"
+
+						
+
+					}).then(function(res){
+						console.log(res);
+						this.msg=res.data;
+					},function(){
+
+					})
+				}
+				
+			}
+		})
+	</script>
+</body>
+</html>

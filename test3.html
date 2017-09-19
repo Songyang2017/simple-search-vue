@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="../vue/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../vue/vue-resource.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+		<style>
+			.gray{
+				background-color: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="app">
+			<h1>{{words}}</h1>
+			<input  @keyup.down="changeDown" @keyup.up="changeUp"	@keyup="getList($event)" type="text" v-model="words"/>
+			<ul>
+				<li :class="{gray:activeIndex==index}" v-for="(val,index) in arr">{{val}}</li>
+			</ul>
+			<p v-show="arr.length==0">暂无数据</p>
+		</div>
+		
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"#app",
+				data:{
+					words:"",
+					arr:[],
+					activeIndex:-1
+				},
+				methods:{
+					getList:function(ev){
+						if(ev.keyCode==38||ev.keyCode==40){
+							return false;
+						}
+						if(ev.keyCode==13){
+							window.location.href="https://www.baidu.com/s?ie=UTF-8&wd="+this.words;
+						};
+						this.$http({
+							url:"https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",
+							params:{
+								wd:this.words
+							},
+							method:"jsonp",
+							jsonp:'cb',
+
+						}).then(function(res){
+							console.log(res);
+							this.arr=res.data.s;
+						})
+					},
+					changeUp:function(){
+						this.activeIndex--;
+						if(this.activeIndex<0){
+							this.activeIndex=this.arr.length-1;
+						};
+						this.words=this.arr[this.activeIndex]
+					},
+					changeDown:function(){
+						this.activeIndex++;
+						if(this.activeIndex>=this.arr.length){
+							this.activeIndex=0;
+						};
+						this.words=this.arr[this.activeIndex]
+					},
+				}
+
+			})
+		</script>
+		
+	</body>
+</html>

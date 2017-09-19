@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+
+
+	<div id="app">
+		<button @click="getmsg">点击</button>
+		<p>{{msg}}</p>
+	</div>
+
+	<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+	<script src="../vue/vue.js"></script>
+	<script src="../vue/vue-resource.js"></script>
+	<script>
+		var app=new Vue({
+			el:"#app",
+			data:{
+				msg:""
+			},
+			methods:{
+				getmsg:function(){
+					$.ajax({
+						type:"get",
+						url:"file/get.php",
+						async:true,
+						data:{
+							a:1,
+							b:9
+						},
+						success:function(data){
+							console.log(data);
+							console.log(this);
+							app.msg=data;
+						}
+					})
+				}
+			}
+		})
+	</script>
+</body>
+</html>

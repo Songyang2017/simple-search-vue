@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>iphone</title>
+	<link rel="stylesheet" href="../vue/animate.css">
+	<style>
+		p{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			color:#fff;
+			margin: 100px auto;
+			line-height: 100px;
+			text-align: center;
+			font-size: 18px;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<input type="text" v-model="text" @input="search">
+		
+		<transition-group enter-active-class="animated zoomInLeft" leave-active-class="animated zoomOutRight">
+			<p v-for="(x,index) in arr" :key="index">{{x}}</p>
+		</transition-group>	
+	</div>
+
+
+
+	<script src="../vue/vue.js"></script>
+	<script>
+		
+
+		var app=new Vue({
+			el:"#app",
+			data:{
+				text:"",
+				spl:"不存在",
+				goods:["西游记","当幸福来敲门","变脸","天使之城","风语者","预见未来","战争之王","幸福终点站","拯救大兵瑞恩","西雅图夜未眠","达芬奇密码","空军一号","西部世界","海贼王","海上钢琴师",],
+				arr:[]
+			},
+			methods:{
+				search:function(){
+					app.arr=[];
+					if(app.text!=""){
+						this.goods.forEach(function(val){
+							console.log(val);
+						if(val.indexOf(app.text)!=-1){
+							app.arr.push(val);
+						}
+					  })
+					}
+					
+					
+				}
+			}
+		})
+
+	</script>
+</body>
+</html>

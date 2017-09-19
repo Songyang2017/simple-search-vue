@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>post</title>
+</head>
+<body>
+	
+
+	<div id="app">
+		<button @click="postmsg">点击发送</button>
+		<h1>{{msg}}</h1>
+	</div>
+
+
+
+	<script src="../vue/vue.js"></script>
+	<script src="../vue/vue-resource.js"></script>
+	<script>
+		var app=new Vue({
+			el:"#app",
+			data:{
+				msg:""
+			},
+			methods:{
+				postmsg:function(){
+					this.$http.post("file/post.php",{
+						a:3,
+						b:4
+					},{
+						emulateJSON:true
+					}).then(function(res){
+						console.log(res);
+						this.msg=res.data;
+					})
+				}
+			}
+		})
+	</script>
+</body>
+</html>

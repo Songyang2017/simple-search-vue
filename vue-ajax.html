@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue-ajax</title>
+</head>
+<body>
+	
+
+	<div id="app">
+		<p>{{msg}}</p>
+		<button @click="getmsg">点击发送</button>
+	</div>
+
+
+
+
+	<script src="../vue/vue.js"></script>
+	<script src="../vue/vue-resource.js"></script>
+	<script>
+		var app=new Vue({
+			el:"#app",
+			data:{
+				msg:"",
+			},
+			methods:{
+				getmsg:function(){
+					this.$http({
+						url:"file/a.txt",
+						method:"get"
+					}).then(function(res){
+						console.log(res);
+						this.msg=res.data;
+					},function(res){
+
+					})
+				}
+			}
+		})
+	</script>
+</body>
+</html>

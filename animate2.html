@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动画</title>
+	<link rel="stylesheet" href="../vue/animate.css">
+	<style>
+		.box{
+			width: 100px;
+			height: 100px;
+			margin: 100px auto;
+			background-color: #ff0;
+			transition: all 0.3s;
+		}
+		/*.fadeBox-enter-active{
+			width: 100px;
+			height: 100px;
+			opacity: 1;
+		}
+		.fadeBox-leave-active,.fadeBox-enter{
+			width: 300px;
+			height: 300px;
+			opacity: 0.5;
+		}*/
+	</style>
+</head>
+<body>
+	
+	<div id="app">
+		<button @click="show=!show">显示/隐藏</button>
+		
+
+		<transition enter-active-class="animated fadeInLeftBig" leave-active-class="animated fadeOutRightBig">
+			<div v-if="show" class="box"></div>
+		</transition>
+	</div>
+
+
+	<script src="../vue/vue.js"></script>
+	<script src="../vue/vue-resource.js"></script>
+	<script>
+		var app=new Vue({
+			el:"#app",
+			data:{
+				show:false
+			},
+		})
+	</script>
+</body>
+</html>

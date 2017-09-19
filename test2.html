@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<div id="app">
+		<p>{{key}}</p>
+		<input type="text" v-model="key" @keyup="getmsg">
+		<p v-for="x in msg" @click="jump">{{x}}</p>
+	</div>
+
+
+	<script src="../vue/vue.js"></script>
+	<script src="../vue/vue-resource.js"></script>
+	<script>
+		var app=new Vue({
+			el:"#app",
+			data:{
+				key:"",
+				msg:""
+			},
+			watch:{
+
+			},
+			methods:{
+				getmsg:function(){
+					this.$http.jsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",{
+						wd:""+this.key+""
+					},{
+						jsonp:'cb'
+					}).then(function(res){
+						console.log(res);
+						this.msg=res.data.s
+					})
+				},
+				jump:function(){
+					window.open("https://www.baidu.com/s?ie=UTF-8&wd="+this.key+"")
+				}
+			}
+
+
+		})
+
+		
+	</script>
+
+	
+</body>
+</html>
+
+

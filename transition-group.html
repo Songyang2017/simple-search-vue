@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../vue/animate.css">
+	<style>
+		p{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			color:#fff;
+			margin: 100px auto;
+			line-height: 100px;
+			text-align: center;
+			font-size: 18px;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<input type="text">
+		<button @click="show=!show">动画</button>
+		<transition-group enter-active-class="animated zoomInDown" leave-active-class="animated zoomOutDown">
+			<p v-for="(x,index) in goods" :key="index" v-show="show">{{x}}</p>
+		</transition-group>	
+	</div>
+
+
+	<script src="../vue/vue.js"></script>
+	<script src="../vue/vue-resource.js"></script>
+	<script>
+		var app=new Vue({
+			el:"#app",
+			data:{
+				show:false,
+				goods:["iphone6","iMac","ipad","iwatch","iphone7"],
+			}
+		})
+	</script>
+</body>
+</html>
