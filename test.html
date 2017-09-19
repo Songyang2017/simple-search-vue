@@ -13,8 +13,8 @@
 	</div>
 
 
-	<script src="../vue/vue.js"></script>
-	<script src="../vue/vue-resource.js"></script>
+	<script src="vue/vue.js"></script>
+	<script src="vue/vue-resource.js"></script>
 	<script>
 		var app=new Vue({
 			el:"#app",
@@ -37,7 +37,7 @@
 					})
 				},
 				jump:function(){
-					window.go("https://www.baidu.com/s?ie=UTF-8&wd="+this.key+"")
+					window.history.go("https://www.baidu.com/s?ie=UTF-8&wd="+this.key+"")
 				}
 			}
 
